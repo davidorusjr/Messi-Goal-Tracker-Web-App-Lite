@@ -1,4 +1,4 @@
-# Messi · Road to 1,000 - Mark_1
+# Messi | Road to 1,000 - Mark_1
 
 By David Orus Jr
 

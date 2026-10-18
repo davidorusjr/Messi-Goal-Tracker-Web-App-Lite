@@ -3,7 +3,7 @@ const STARTING_DATA = {
   teams: [
     { id: "barcelona", name: "Barcelona", goals: 672 },
     { id: "argentina", name: "Argentina", goals: 126 },
-    { id: "interMiami", name: "Inter Miami", goals: 104 },
+    { id: "interMiami", name: "Inter Miami", goals: 106 },
     { id: "psg", name: "Paris Saint-Germain", goals: 32 },
   ],
 };
@@ -30,10 +30,15 @@ function loadManualData() {
     const oldInterMiami = Array.isArray(saved.teams)
       ? saved.teams.find((team) => team.id === "interMiami")?.goals
       : undefined;
-    const interMiamiGoals = saved.interMiamiGoals ?? oldInterMiami;
-    if (!validGoals(interMiamiGoals)) return { updated: STARTING_DATA.updated, interMiamiGoals: STARTING_INTER_MIAMI_GOALS };
+    const storedInterMiamiGoals = saved.interMiamiGoals ?? oldInterMiami;
+    if (!validGoals(storedInterMiamiGoals)) return { updated: STARTING_DATA.updated, interMiamiGoals: STARTING_INTER_MIAMI_GOALS };
+    // Upgrade the former default without replacing any other manually entered value.
+    const interMiamiGoals = storedInterMiamiGoals === 104 ? STARTING_INTER_MIAMI_GOALS : storedInterMiamiGoals;
     const dateIsValid = typeof saved.updated === "string" && !Number.isNaN(Date.parse(saved.updated));
-    return { updated: dateIsValid ? saved.updated : STARTING_DATA.updated, interMiamiGoals };
+    return {
+      updated: interMiamiGoals !== storedInterMiamiGoals || !dateIsValid ? STARTING_DATA.updated : saved.updated,
+      interMiamiGoals,
+    };
   } catch {
     return { updated: STARTING_DATA.updated, interMiamiGoals: STARTING_INTER_MIAMI_GOALS };
   }

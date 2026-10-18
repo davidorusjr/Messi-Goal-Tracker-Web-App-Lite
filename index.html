@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>Messi · Road to 1,000</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header class="eyebrow">
+      <span>Lionel Messi · Career goals</span>
+      <span id="asof"></span>
+    </header>
+
+    <section class="hero" aria-labelledby="total">
+      <p class="manual-label">Manually maintained</p>
+      <div class="num" id="total">934</div>
+      <div class="togo" id="togo"></div>
+      <div class="bar" id="progress" role="progressbar" aria-label="Progress to next goal milestone" aria-valuemin="0">
+        <span id="fill"></span>
+      </div>
+      <div class="ticks"><span>0</span><span id="halfway"></span><span id="milestone"></span></div>
+    </section>
+
+    <section class="card" aria-labelledby="estimate-title">
+      <h2 class="label" id="estimate-title">Club scoring scenarios</h2>
+      <div class="date" id="eta"></div>
+      <p class="sub" id="etasub"></p>
+      <div class="seg" id="seg" aria-label="Estimate scenarios"></div>
+    </section>
+
+    <section class="card" id="breakdown" aria-labelledby="breakdown-title"></section>
+
+    <section class="card" aria-labelledby="manual-title">
+      <h2 class="label" id="manual-title">Update Inter Miami total</h2>
+      <p class="sub">Inter Miami is the only editable team. Earlier team figures remain as starting references. Saving updates this browser only.</p>
+      <form class="manual-form" id="manual-form">
+        <label>Inter Miami goals<input id="inter-miami" name="interMiami" type="number" min="0" max="2000" step="1" required></label>
+        <div class="form-actions">
+          <button class="cta" type="submit">Save manual totals</button>
+          <button class="ghost" id="reset" type="button">Restore starting figures</button>
+        </div>
+      </form>
+      <p class="form-status" id="save-status" role="status" aria-live="polite"></p>
+    </section>
+
+    <p class="note">Figures are maintained manually and saved in this browser. The team breakdown and total are not checked against a live data source. Both milestone dates assume future club goals only; the scoring rates are illustrative scenarios, not predictions.</p>
+  </main>
+</body>
+</html>
